@@ -134,7 +134,8 @@ session_start();
         <?php
         if(isset($_SESSION['usuario'])):
         ?>
-          <a href="ContactVisualization.php">Visualizar contatos enviados</a>
+          <a href="ContactVisualization.php"><button class="btn btn-primary" type="submit"
+          id="loginButton" style="margin-top: 5px;">Visualizar contatos enviados</button></button></a>
         <?php
         endif;
         ?>

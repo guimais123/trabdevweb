@@ -4,8 +4,8 @@ include("conexao.php");
 
 //o real_escape_string faz verificação escapando dos caracteres especiais
 //Função trim retira os espaços de inicio e fim das strings
-$titulo = $conexao->quote($_POST['title']);
-$mensagem = $conexao->quote($_POST['msg']);
+$titulo = mysqli_real_escape_string($conexao, $_POST['title']);
+$mensagem = mysqli_real_escape_string($conexao, $_POST['msg']);
 $usuario = $_SESSION['usuario'];
 
 if($titulo == ""){

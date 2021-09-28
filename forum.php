@@ -131,7 +131,6 @@ include("conexao.php");
           <?php
 					$sql = "SELECT * FROM posts ORDER BY id DESC";
 					$resultado = mysqli_query($conexao, $sql);
-
 					if(mysqli_num_rows($resultado)>0):
             while($dados = mysqli_fetch_array($resultado)):
               ?>
@@ -141,12 +140,26 @@ include("conexao.php");
                   <?php echo $dados ['titulo']; ?>
                 </h2>
                 <h3 class="post-subtitle">
-                  <?php echo $dados ['mensagem']; ?>
+                  <?php echo $dados ['mensagem'];?>
                 </h3>
               </a>
               <p class="post-meta">Posted by <?php echo $dados ['usuario']; ?>
               <br>
-              <a href="deletePost.php"><button type="button" class="btn btn-danger">Excluir post</button></a>
+              <?php
+                if(isset($_SESSION['usuario'])):
+                ?>
+                  <form name="postForm" id="postForm" action="deletePost.php" method="POST">
+                  <input type="hidden" name="id" value="<?php echo $dados ['id']; ?>"/>
+                  <input type="submit" name="deletePost" class="btn btn-danger" 
+                  style="weigth: 15px;
+                  margin-top: -15px;
+                  margin-bottom: 25px;"
+                  value="Delete"/>
+                  </form>
+                <?php
+                endif;
+              ?>
+              <hr>
           <?php
 			    endwhile;
           else:
